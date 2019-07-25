@@ -34,6 +34,13 @@ public class Booking {
         this.time = time;
     }
 
+    public Booking(String recipient, long phoneNumber, int status, long time) {
+        this.recipient = recipient;
+        this.phoneNumber = phoneNumber;
+        this.status = status;
+        this.time = time;
+    }
+
     public long getId() {
         return id;
     }
