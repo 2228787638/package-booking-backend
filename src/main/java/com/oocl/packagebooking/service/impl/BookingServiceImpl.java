@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,20 +19,25 @@ public class BookingServiceImpl implements BookingService {
     BookingRepository bookingRepository;
     @Override
     public Booking addBooking(Booking booking) {
+        booking.setStatus(3);
         return bookingRepository.save(booking);
     }
 
     @Override
     public Booking updateBooking(long bookingId, Booking booking) {
         Booking newBooking = bookingRepository.findById(bookingId).get();
-        BeanUtils.copyProperties(booking,newBooking,"id");
+        BeanUtils.copyProperties(booking,newBooking,"id","recipient","phoneNumber");
         bookingRepository.save(newBooking);
         return newBooking;
     }
 
     @Override
     public List<Booking> seachBookingByStatus(int status) {
-        return bookingRepository.findAll().stream().filter(i->i.getStatus()==status).collect(Collectors.toList());
+        if(status==0){
+            return bookingRepository.findAll();
+        }else {
+            return bookingRepository.findAll().stream().filter(i -> i.getStatus() == status).collect(Collectors.toList());
+        }
     }
 
 
