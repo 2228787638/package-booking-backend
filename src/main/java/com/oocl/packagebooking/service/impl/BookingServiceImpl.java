@@ -7,6 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BookingServiceImpl implements BookingService {
 
@@ -24,5 +28,11 @@ public class BookingServiceImpl implements BookingService {
         bookingRepository.save(newBooking);
         return newBooking;
     }
+
+    @Override
+    public List<Booking> seachBookingByStatus(int status) {
+        return bookingRepository.findAll().stream().filter(i->i.getStatus()==status).collect(Collectors.toList());
+    }
+
 
 }

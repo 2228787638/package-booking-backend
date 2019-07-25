@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.awt.*;
 import java.awt.print.Book;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,6 +30,13 @@ public class BookingServiceImplTest {
     public void should_return_a_new_Booking_when_update_Booking_by_id() {
         Booking updateBooking=bookingService.updateBooking(1,new Booking(Long.parseLong("1"),"sdad",Long.parseLong("1"),1,Long.parseLong("1")));
         Assert.assertEquals(1,updateBooking.getStatus());
+    }
+
+    @Test
+    public void should_return_BookingsList_according_to_status_id() {
+        Booking booking = new Booking(Long.parseLong("66"),"sdad",Long.parseLong("1"),1,Long.parseLong("1"));
+        List<Booking> bookingList = bookingService.seachBookingByStatus(1);
+        Assert.assertEquals(1,bookingList.size());
     }
 
 }
