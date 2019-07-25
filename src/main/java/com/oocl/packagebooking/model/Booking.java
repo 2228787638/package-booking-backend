@@ -10,6 +10,10 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    /**
+     * 运单号
+     */
+    private long number;
 
     private String recipient;
 
@@ -26,15 +30,17 @@ public class Booking {
         this.recipient = recipient;
     }
 
-    public Booking(long id, String recipient, long phoneNumber, int status, long time) {
+    public Booking(long id, String recipient,long number, long phoneNumber, int status, long time) {
         this.id = id;
+        this.number=number;
         this.recipient = recipient;
         this.phoneNumber = phoneNumber;
         this.status = status;
         this.time = time;
     }
 
-    public Booking(String recipient, long phoneNumber, int status, long time) {
+    public Booking(long number,String recipient, long phoneNumber, int status, long time) {
+        this.number=number;
         this.recipient = recipient;
         this.phoneNumber = phoneNumber;
         this.status = status;

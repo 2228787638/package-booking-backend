@@ -26,9 +26,7 @@ public class BookingServiceImplTest {
 
     @Test
     public void should_return_a_new_Booking_when_update_Booking_by_id() {
-
-        Booking updateBooking=bookingService.updateBooking(1,new Booking("sdad",Long.parseLong("1"),1,Long.parseLong("1")));
-
+        Booking updateBooking=bookingService.updateBooking(1,new Booking(Long.parseLong("1"),"sdad",Long.parseLong("1"),1,Long.parseLong("1")));
         Assert.assertEquals(1,updateBooking.getStatus());
     }
 
